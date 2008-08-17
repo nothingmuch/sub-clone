@@ -93,6 +93,29 @@ destruction:
 This means that blessing such a sub would change all other copies (since they
 are, in fact, not copies at all), and that C<DESTROY> will never be called.
 
+=head1 EXPORTS
+
+L<Sub::Clone> uses L<Sub::Exporter> so its C<import> has all the implied
+goodness (renaming, etc).
+
+=over 4
+
+=item is_cloned $sub
+
+Returns true if C<CVf_CLONED> is true (meaning that this subroutine is a clone
+of a proto sub and being refcounted).
+
+=item clone_sub $sub
+
+Returns a clone of the sub, that is guaranteed to be refcounted, and can be
+safely blessed.
+
+=item clone_if_immortal $sub
+
+Clones the sub if it's not C<is_cloned>.
+
+=back
+
 =head1 PURE PERL VS XS
 
 This module is implemented in both XS and pure Perl, and the reference counting
