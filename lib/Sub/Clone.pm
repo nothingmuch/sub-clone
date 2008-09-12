@@ -6,7 +6,7 @@ use strict;
 use warnings;
 
 BEGIN {
-	our $VERSION = '0.01';
+	our $VERSION = '0.02';
 
 	my $e = do {
 		local $@;
