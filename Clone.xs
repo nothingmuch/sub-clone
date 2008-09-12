@@ -1,6 +1,8 @@
 #include "EXTERN.h"
 #include "perl.h"
 #include "XSUB.h"
+#define NEED_newRV_noinc
+#include "ppport.h"
 
 STATIC SV * clone_sub (pTHX_ CV *proto) {
 	CV *cv = Perl_cv_clone(aTHX_ proto);
@@ -19,7 +21,7 @@ STATIC SV * clone_sub (pTHX_ CV *proto) {
 		SV* const namesv = pname[ix];
 		if (namesv && namesv != &PL_sv_undef) { /* lexical */
 			if (SvFAKE(namesv)) {   /* lexical from outside? */
-				av_store(new_pad, ix, SvREFCNT_inc_NN(ppad[ix]));
+				av_store(new_pad, ix, SvREFCNT_inc(ppad[ix]));
 			}
 		}
 	}
