@@ -13,7 +13,7 @@ STATIC SV * clone_sub (pTHX_ CV *proto) {
     SV** const pname = AvARRAY(protopad_name);
     SV** const ppad = AvARRAY(protopad);
     const I32 fname = AvFILLp(protopad_name);
-	AV *new_pad = *av_fetch(CvPADLIST(cv), 1, 0);
+	AV *new_pad = (AV *)*av_fetch(CvPADLIST(cv), 1, 0);
 	I32 ix;
 
 	/* alias all the captured vars, they were recaptured by cv_clone */
